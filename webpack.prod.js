@@ -32,7 +32,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __DEV__: true,
-      PUBLIC_PATH: '/webdemo/',
+      'process.env.PUBLIC_PATH': '/webdemo/',
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'

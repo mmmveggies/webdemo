@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 const pages = require.context('./pages', false, /\.tsx$/, 'sync');
 const routes = pages.keys().map(key => ({
   key,
-  path: key.replace(/\.\/(.*)\.tsx$/, '$1'),
+  path: key.replace(/\.(.*)\.tsx$/, '$1'),
   component: pages(key).default,
 }));
 
