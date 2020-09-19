@@ -10,7 +10,7 @@ const routes = pages.keys().map(key => ({
 }));
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_PATH}>
     <Switch>
       {routes.map(props => (
         <Route {...props} />
