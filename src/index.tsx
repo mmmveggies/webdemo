@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, HashRouter } from 'react-router-dom';
 
 const pages = require.context('./pages', false, /\.tsx$/, 'sync');
 const routes = pages.keys().map(key => ({
@@ -10,7 +10,7 @@ const routes = pages.keys().map(key => ({
 }));
 
 ReactDOM.render(
-  <BrowserRouter basename={__webpack_public_path__}>
+  <HashRouter>
     <Switch>
       {routes.map(props => (
         <Route {...props} />
@@ -26,7 +26,7 @@ ReactDOM.render(
         </ul>
       </Route>
     </Switch>
-  </BrowserRouter>,
+  </HashRouter>,
   document.querySelector('#container')
 );
 

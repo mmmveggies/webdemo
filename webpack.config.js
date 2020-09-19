@@ -24,11 +24,6 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
-  output: {
-    // path: `${__dirname}/docs`,
-    publicPath: '/',
-    // filename: 'app.js',
-  },
   plugins: [
     new webpack.DefinePlugin({
       __DEV__: true,
