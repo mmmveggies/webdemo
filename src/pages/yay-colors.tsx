@@ -12,10 +12,12 @@ export default function PageYayColors() {
 
     ctx.fillStyle = hsla.rotate(1, true);
     ctx.fillRect(0, 0, width, height);
-    ctx.strokeStyle = hsla.rotate(180);
+
+    ctx.font = "10em Arial";
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.strokeText('Hello World', width / 2, height / 2);
+    ctx.fillStyle = hsla.rotate(180);
+    ctx.fillText('Hello World', width / 2, height / 2);
   }
 
   return <Animation>{render}</Animation>;

@@ -16,14 +16,16 @@ ReactDOM.render(
         <Route {...props} />
       ))}
       <Route>
-        <h1>INDEX</h1>
-        <ul>
-          {routes.map(({ key, path }) => (
-            <Link key={key} to={path}>
-              {path}
-            </Link>
-          ))}
-        </ul>
+        <div style={{ padding: '1em' }}>
+          <h1>index</h1>
+          <ul>
+            {routes.map(({ key, path }) => (
+              <Link key={key} to={path}>
+                {path}
+              </Link>
+            ))}
+          </ul>
+        </div>
       </Route>
     </Switch>
   </HashRouter>,

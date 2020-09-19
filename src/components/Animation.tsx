@@ -50,17 +50,10 @@ export default function Animation({
     return () => window.removeEventListener('resize', resize);
   }, []);
 
-  const div = container.current || ({} as any);
-
   return (
     <div ref={container} style={{ width: '100%', height: '100%' }}>
-      <canvas
-        {...props}
-        ref={canvas}
-        width={div.clientWidth}
-        height={div.clientHeight}
-      >
-        HTML canvas not supported :(
+      <canvas {...props} ref={canvas}>
+        HTML Canvas <a href='https://caniuse.com/canvas'>not supported</a> :(
       </canvas>
     </div>
   );
