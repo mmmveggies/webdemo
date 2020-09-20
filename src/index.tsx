@@ -20,9 +20,11 @@ ReactDOM.render(
           <h1>index</h1>
           <ul>
             {routes.map(({ key, path }) => (
-              <Link key={key} to={path}>
-                {path}
-              </Link>
+              <li key={key}>
+                <h3>
+                  <Link to={path}>{path}</Link>
+                </h3>
+              </li>
             ))}
           </ul>
         </div>

@@ -53,7 +53,7 @@ export default function Animation({
   return (
     <div ref={container} style={{ width: '100%', height: '100%' }}>
       <canvas {...props} ref={canvas}>
-        HTML Canvas <a href='https://caniuse.com/canvas'>not supported</a> :(
+        HTML Canvas <a href="https://caniuse.com/canvas">not supported</a> :(
       </canvas>
     </div>
   );

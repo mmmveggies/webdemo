@@ -7,6 +7,7 @@
     "@babel/preset-env": "7.5.0",
     "@babel/preset-react": "7.0.0",
     "@babel/runtime": "7.5.0",
+    "@types/dom-mediacapture-record": "^1.0.7",
     "@types/react-router-dom": "^5.1.5",
     "babel-eslint": "9.0.0",
     "babel-loader": "^8.1.0",
@@ -45,7 +46,8 @@
   },
   "scripts": {
     "build": "webpack --config ./webpack.prod.js --mode production",
-    "dev": "webpack-dev-server",
+    "start": "webpack-dev-server",
     "watch": "webpack --config ./webpack.config.js --mode development"
-  }
+  },
+  "license": "MIT"
 }

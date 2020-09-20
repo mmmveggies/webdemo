@@ -2,7 +2,7 @@ import React from 'react';
 import Animation, { AnimationFrame } from '../components/Animation';
 import { HSLA } from '../utils/hsla';
 
-export default function PageYayColors() {
+export default function PageHello() {
   const color = React.useRef(new HSLA());
 
   function render({ ctx }: AnimationFrame) {
@@ -13,7 +13,7 @@ export default function PageYayColors() {
     ctx.fillStyle = hsla.rotate(1, true);
     ctx.fillRect(0, 0, width, height);
 
-    ctx.font = "10em Arial";
+    ctx.font = '10em Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = hsla.rotate(180);
