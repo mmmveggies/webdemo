@@ -33,7 +33,10 @@ export default function PageNoise() {
 
     const dx = width / bytes.length;
 
-    ctx.fillStyle = hsla.rotate(1, true);
+    const average = bytes.reduce((p, c) => p + c) / 256;
+    const degrees = Math.floor(average / 64);
+
+    ctx.fillStyle = hsla.rotate(degrees, true);
     ctx.fillRect(0, 0, width, height);
 
     ctx.fillStyle = hsla.rotate(180, true);
