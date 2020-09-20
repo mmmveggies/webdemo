@@ -3,49 +3,44 @@ import Animation, { AnimationFrame } from '../components/Animation';
 import { HSLA } from '../utils/hsla';
 
 export default function PageNoise() {
-  const color = React.useRef(new HSLA());
-  const anode = React.useRef<AnalyserNode>();
+  const hsla = React.useMemo(() => new HSLA(), []);
+  const [analyser, setAnalyser] = React.useState<AnalyserNode>();
 
   React.useEffect(() => {
     navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
       const context = new AudioContext();
       const source = context.createMediaStreamSource(stream);
-
+      // eslint-disable-next-line no-shadow
       const analyser = context.createAnalyser();
-      // analyser.fftSize = 256;
-      analyser.smoothingTimeConstant = 0.8;
-
-      anode.current = analyser;
       source.connect(analyser);
+      setAnalyser(analyser);
     });
   }, []);
 
-  function render({ ctx }: AnimationFrame) {
-    const hsla = color.current;
-    const analyser = anode.current;
+  if (!analyser) {
+    return <h1>Loading Analyser</h1>;
+  }
+
+  const render = ({ ctx }: AnimationFrame) => {
     const width = ctx.canvas.clientWidth;
     const height = ctx.canvas.clientHeight;
 
-    if (!analyser) {
-      return;
-    }
+    const bytes = new Uint8Array(analyser.frequencyBinCount);
+    analyser.getByteFrequencyData(bytes);
 
-    const array = new Uint8Array(analyser.frequencyBinCount);
-    analyser.getByteFrequencyData(array);
-
-    const dx = width / array.length;
+    const dx = width / bytes.length;
 
     ctx.fillStyle = hsla.rotate(1, true);
     ctx.fillRect(0, 0, width, height);
 
     ctx.fillStyle = hsla.rotate(180, true);
-    array.forEach((value, i) => {
+    bytes.forEach((value, i) => {
       const x0 = Math.floor(dx * i);
       const y1 = (-height * value) / 2 ** 8;
       ctx.fillRect(x0, height, Math.ceil(dx), y1);
     });
     ctx.fillStyle = hsla.rotate(-180, true);
-  }
+  };
 
   return <Animation>{render}</Animation>;
 }
