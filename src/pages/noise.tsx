@@ -3,8 +3,8 @@ import Animation, { AnimationFrame } from '../components/Animation';
 import { HSLA } from '../utils/hsla';
 
 export default function PageNoise() {
-  const hsla = React.useMemo(() => new HSLA(), []);
   const [analyser, setAnalyser] = React.useState<AnalyserNode>();
+  const hsla = React.useMemo(() => new HSLA(), []);
 
   React.useEffect(() => {
     navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
@@ -14,6 +14,9 @@ export default function PageNoise() {
       const analyser = context.createAnalyser();
       source.connect(analyser);
       setAnalyser(analyser);
+      return () => {
+        stream.getTracks().map(track => track.stop());
+      };
     });
   }, []);
 
